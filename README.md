@@ -19,7 +19,7 @@ Importable configs for Postman: request collections per app (Roadmaster, MeteoGu
 
 3. Click on Import:
 
-![Import button placement](img/import-button.png)
+   ![Import button placement](img/import-button.png)
 
 4. Drag'n'drop all files you want to import or select them by clicking on 'Choose items'
 
