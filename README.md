@@ -4,18 +4,18 @@ Importable configs for Postman: request collections per app (Roadmaster, MeteoGu
 ## Installation
 1. Open Postman
 2. Remove previous versions of collections and environments to avoid copies creation:
-  - To remove collections hit '...' and then 'Delete':
+   - To remove collections hit '...' and then 'Delete':
 
-    ![Remove collection button](img/remove-collection.png)
+     ![Remove collection button](img/remove-collection.png)
 
-  - To remove environments:
-    - Go to 'Manage environments':
+   - To remove environments:
+     - Go to 'Manage environments':
 
-      ![Manage environments button](img/manage-environments.png)
+       ![Manage environments button](img/manage-environments.png)
 
-    - Click on trash icon:
+     - Click on trash icon:
 
-      ![Remove environment button](img/remove-env.png)
+       ![Remove environment button](img/remove-env.png)
 
 3. Click on Import:
 
