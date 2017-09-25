@@ -1,0 +1,27 @@
+{
+  "id": "60e7c953-1dbc-2635-3d79-f1a3bdecb207",
+  "name": "Postman Globals",
+  "values": [
+    {
+      "enabled": true,
+      "key": "task-list-mtel-key",
+      "value": "{replace-with-mtel-token}",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "meteogroup-email",
+      "value": "{replace-with-mg-email}",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "meteogroup-password-encoded",
+      "value": "{replace-with-mg-password-base64}",
+      "type": "text"
+    }
+  ],
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2017-09-25T14:52:08.516Z",
+  "_postman_exported_using": "Postman/5.2.0"
+}

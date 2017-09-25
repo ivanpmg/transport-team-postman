@@ -1,0 +1,225 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Meteoguard",
+		"_postman_id": "bd0bf80a-2207-1224-a900-84919f06209d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Update MTEL task-list token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"task-list-mtel-key\", jsonData.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "https://auth.weather.mg/oauth/token?grant_type=client_credentials",
+							"protocol": "https",
+							"host": [
+								"auth",
+								"weather",
+								"mg"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic bXRlbF9jYWxsYmFja19wcm9kOndiOGpMYVozdTFmZndhMjh3QWx3NDJEYUhmYmV1TVNY",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update MG token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearGlobalVariable(\"meteogroup-password\");",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"mg-key\", jsonData.id_token);"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setGlobalVariable(\"meteogroup-password\", atob(postman.getGlobalVariable(\"meteogroup-password-encoded\")));"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://meteogroup.eu.auth0.com/oauth/ro",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"{{meteogroup-auth-id}}\",\n    \"username\": \"{{meteogroup-email}}\",\n    \"password\": \"{{meteogroup-password}}\",\n    \"connection\": \"MGADFS\",\n    \"vgrant_type\": \"password\",\n    \"scope\": \"openid groups scope userId organizationId email roles country name\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task-list",
+			"description": "",
+			"item": [
+				{
+					"name": "Search callers by phone",
+					"request": {
+						"url": {
+							"raw": "http://{{task-list-host}}/contact/search/phone?phoneNumber=%2B31317399800",
+							"protocol": "http",
+							"host": [
+								"{{task-list-host}}"
+							],
+							"path": [
+								"contact",
+								"search",
+								"phone"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "%2B31317399800",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{mg-key}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add new task (v2)",
+					"request": {
+						"url": "http://localhost:8080/api/weatherroom/v2/call",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJraWQiOiJhdXRoLXNlcnZlci04NWY4MDk1MC03MmEwLTQ4M2MtYjYxMy0xNWI4Mjg4Yzc2M2MiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJtdGVsX2NhbGxiYWNrX3Byb2QiLCJzY29wZSI6WyJtZXRlb2d1YXJkLXRhc2stbGlzdC13cml0ZSJdLCJkb21haW4iOiJtdGVsIiwiZXhwIjoxNTA2MzM3NjI3LCJqdGkiOiI2OWFjYWVkZS1mM2ZkLTQ1MTMtYTJjZS04N2NjNmYxYTMyM2IiLCJjbGllbnRfaWQiOiJtdGVsX2NhbGxiYWNrX3Byb2QifQ.HXUosL7t8-tvEZKAChohtMGHQ6GaAH8QsqrC8FkHkGUJcb4ww2bYYHU_UgweKQ5pXuDcjFJlEZEZeiLfs_VyJg",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"value": "",
+									"description": "",
+									"type": "file",
+									"disabled": true
+								},
+								{
+									"key": "calledNr",
+									"value": "+442038082009",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "callingNr",
+									"value": "+48733378356",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "callback",
+									"value": "false",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "grittingStatus",
+									"value": "FINISHED_GRITTING",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "dateTime",
+									"value": "2017-09-14T13:25:18.080804+02:00",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bff",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "domain-data-processing",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "communication",
+			"description": "",
+			"item": []
+		}
+	]
+}
