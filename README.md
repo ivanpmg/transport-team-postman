@@ -24,3 +24,11 @@ Importable configs for Postman: request collections per app (Roadmaster, MeteoGu
 4. Drag'n'drop all files you want to import or select them by clicking on 'Choose items'
 
    > **IMPORTANT NOTE:** Globals file should be imported once first time only since it contains only placeholders of sensitive variables. If you reimport it once you update Globals with proper data - it will be overridden with placeholders again.
+
+5. Configure globals:
+
+   |Global variable     | Description                                      |
+   | ------------------ | ------------------------------------------------ |
+   | meteogroup-email   | Meteogroup email                                 |
+   | meteogroup-email   | Meteogroup password encoded in Base64            |
+   | task-list-mtel-key | Security token used by MTEL to access MeteoGuard |
