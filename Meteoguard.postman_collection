@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Meteoguard",
-		"_postman_id": "bd0bf80a-2207-1224-a900-84919f06209d",
+		"_postman_id": "615e3c69-a26a-2605-6dd9-31552fb01abc",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -56,7 +56,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -141,7 +144,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -149,12 +155,12 @@
 				{
 					"name": "Add new task (v2)",
 					"request": {
-						"url": "http://localhost:8080/api/weatherroom/v2/call",
+						"url": "http://{{task-list-host}}/api/weatherroom/v2/call",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJraWQiOiJhdXRoLXNlcnZlci04NWY4MDk1MC03MmEwLTQ4M2MtYjYxMy0xNWI4Mjg4Yzc2M2MiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJtdGVsX2NhbGxiYWNrX3Byb2QiLCJzY29wZSI6WyJtZXRlb2d1YXJkLXRhc2stbGlzdC13cml0ZSJdLCJkb21haW4iOiJtdGVsIiwiZXhwIjoxNTA2MzM3NjI3LCJqdGkiOiI2OWFjYWVkZS1mM2ZkLTQ1MTMtYTJjZS04N2NjNmYxYTMyM2IiLCJjbGllbnRfaWQiOiJtdGVsX2NhbGxiYWNrX3Byb2QifQ.HXUosL7t8-tvEZKAChohtMGHQ6GaAH8QsqrC8FkHkGUJcb4ww2bYYHU_UgweKQ5pXuDcjFJlEZEZeiLfs_VyJg",
+								"value": "Bearer {{task-list-mtel-key}}",
 								"description": ""
 							}
 						],
