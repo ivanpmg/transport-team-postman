@@ -1,0 +1,106 @@
+{
+	"info": {
+		"name": "Roadmaster",
+		"_postman_id": "9a353494-b728-409e-3f82-add70cb53ab0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Update Roadmaster token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7917f16f-0026-4a44-ba02-c8b0b835f4a3",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData.token)",
+									"postman.setEnvironmentVariable(\"roadmaster-token\", jsonData.token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"ron\",\n\t\"password\":\"goldenboy\"\n}"
+						},
+						"url": {
+							"raw": "https://authentication.roadmaster.mg/authenticate",
+							"protocol": "https",
+							"host": [
+								"authentication",
+								"roadmaster",
+								"mg"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "https://backend.roadmaster.mg/api/dashboard/weathertable/station?stationId=1303074&issueDateTime=2018-01-18T08:00:00Z",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{roadmaster-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://backend.roadmaster.mg/api/dashboard/weathertable/station?stationId=1303074&issueDateTime=2018-01-18T08:00:00Z",
+					"protocol": "https",
+					"host": [
+						"backend",
+						"roadmaster",
+						"mg"
+					],
+					"path": [
+						"api",
+						"dashboard",
+						"weathertable",
+						"station"
+					],
+					"query": [
+						{
+							"key": "stationId",
+							"value": "1303074",
+							"equals": true
+						},
+						{
+							"key": "issueDateTime",
+							"value": "2018-01-18T08:00:00Z",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
